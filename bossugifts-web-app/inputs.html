@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style> 
+        *{
+            margin: 0;
+            padding: 0;
+        }
+   
+    .hero{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(to bottom,  rgba(0, 0, 0, 0.842), rgba(0,0,0,0.7)), url(src/assets/images/luigi.jpg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .selector{
+        width: 350px;
+    }
+
+    #selectField{
+        width: 100%;
+        padding: 15px 20px;
+        margin-bottom: 30px;
+        box-sizing: border-box;
+        background: rgba(255,255,255,0.7);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #selectField img{
+        width: 12px;
+        transition: transform .5s;
+    }
+
+    #list{
+        width: 100%;
+        background: rgba(255, 255, 355, .7);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .options{
+        width: 100%;
+        padding: 15px 0 15px 70px;
+        list-style: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .options img{
+        width: 25px;
+        position: absolute;
+        top: 12px;
+        left: 25px;
+    }
+
+    .options:hover{
+        background: rgba(255, 255, 355, .7);    
+    }
+
+    .hide{
+        visibility: hidden;
+    }
+
+    .rotate{
+        transform: rotate(180deg);
+    }
+</style>
+
+</head>
+<body>
+    
+    <div class="hero">
+        <div class="selector">
+            <div id="selectField">
+                <p id="selectText">Choose your options<p/>
+                <img src="src/assets/images/arrowicon.png" id="arrowIcon">
+            </div>
+            
+            <ul id="list" class="hide">
+                <li class="options">
+                    <img src="src/assets/images/kfc.png">
+                    <p>KFC<p/>
+                </li>
+                <li class="options">
+                    <img src="src/assets/images/nintendo1.png">
+                    <p>Nintendo<p/>
+                </li>
+                <li class="options">
+                    <img src="src/assets/images/XBOXXXXX.png">
+                    <p>Xbox<p/>
+                </li>
+                <li class="options">
+                    <img src="src/assets/images/Itunesx.png">
+                    <p>Itunes<p/>
+                </li>
+                <li class="options">
+                    <img src="src/assets/images/melcom.png">
+                    <p>Melcom<p/>
+                </li>
+                <li class="options">
+                    <img src="src/assets/images/image.png">
+                    <p>Steam<p/>
+                </li>
+                <li class="options">
+                    <img src="src/assets/images/playstattion.jpg">
+                    <p>Playstation<p/>
+                </li>
+                <li class="options">
+                    <img src="src/assets/images/razer.png">
+                    <p>Razer<p/>
+                </li>
+                <li class="options">
+                    <img src="src/assets/images/netflixx.png">
+                    <p>Netflix<p/>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <script>
+        var selectField = document.getElementById("selectField");
+        var selectText = document.getElementById("selectText");
+        var options = document.getElementsByClassName("options");
+        var list = document.getElementById("list");
+        var arrowIcon = document.getElementById("arrowIcon");
+    
+        selectField.onclick = function () {
+            list.classList.toggle("hide");
+            arrowIcon.classList.toggle("rotate");
+        }
+    
+        for (var i = 0; i < options.length; i++) {
+            options[i].onclick = function () {
+                selectText.innerHTML = this.textContent;
+                list.classList.toggle("hide");
+                arrowIcon.classList.toggle("rotate");
+            }
+        }
+    </script>
+
+</body>
+</html>

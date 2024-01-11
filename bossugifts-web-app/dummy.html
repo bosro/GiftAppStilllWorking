@@ -1,0 +1,627 @@
+my angular component html
+<div
+  class="box d-flex align-items-center justify-content-center flex-column p-1"
+>
+  <div class="card w-100" [formGroup]="form">
+    <div class="d-flex align-items-center justify-content-center w-100 p-4">
+      <img
+        src="https://bossugifts.com/assets/images/cards.png"
+        class="card-img-top"
+        style="width: 100px"
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Where gifting becomes effortless!</h5>
+      <br />
+      <ng-container formGroupName="items">
+        <p class="form-label">Choose Category</p>
+        <!--<select
+          class="form-select form-select-lg mb-3"
+          aria-label="Large select example"
+          formControlName="categoryId"
+        >
+          <option value="">Category</option>
+          <option [value]="cat._id" *ngFor="let cat of category$ | async">
+            {{ cat.name }}
+          </option>
+        </select>-->
+        <div class="selector" formControlName="categoryId">
+          <div id="selectField">
+            <p id="selectText">Choose your options<p/>
+            <img src="assets/images/arrowicon.png" id="arrowIcon">
+          </div>
+          <ul id="list" class="hide">
+            <li class="options">
+                <img src="assets/images/kfc.png">
+                <p>KFC<p/>
+            </li>
+            <li class="options">
+                <img src="assets/images/nintendo1.png">
+                <p>Nintendo<p/>
+            </li>
+            <li class="options">
+                <img src="assets/images/XBOXXXXX.png">
+                <p>Xbox<p/>
+            </li>
+            <li class="options">
+                <img src="assets/images/Itunesx.png">
+                <p>Itunes<p/>
+            </li>
+            <li class="options">
+                <img src="assets/images/melcom.png">
+                <p>Melcom<p/>
+            </li>
+            <li class="options">
+                <img src="assets/images/image.png">
+                <p>Steam<p/>
+            </li>
+            <li class="options">
+                <img src="assets/images/playstattion.jpg">
+                <p>Playstation<p/>
+            </li>
+            <li class="options">
+                <img src="assets/images/razer.png">
+                <p>Razer<p/>
+            </li>
+            <li class="options">
+                <img src="assets/images/netflixx.png">
+                <p>Netflix<p/>
+            </li>
+          </ul>
+        </div>
+
+        <span
+          class="text-danger"
+          *ngIf="
+            items?.get('categoryId')?.touched &&
+            items?.get('categoryId')?.invalid
+          "
+          >Please choose gift card category*</span
+        >
+        <p>Choose Type</p>
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label="Large select example"
+          formControlName="giftcardId"
+        >
+          <option value="">Card</option>
+          <option [value]="card._id" *ngFor="let card of cards$ | async">
+            {{ card.description }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            items?.get('giftcardId')?.touched &&
+            items?.get('giftcardId')?.invalid
+          "
+          >Please choose your prefered card type*</span
+        >
+        <p>How many do you want to buy?</p>
+        <select
+          class="form-select form-select-lg mb-3"
+          formControlName="quantity"
+        >
+          <option value="">Quantity</option>
+          <option [value]="q" *ngFor="let q of quantity">
+            {{ q }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            items?.get('quantity')?.touched && items?.get('quantity')?.invalid
+          "
+          >Please enter quantity you want to buy*</span
+        >
+      </ng-container>
+      <ng-container formGroupName="order">
+        <p>Choose your momo network</p>
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label="Large select example"
+          formControlName="accountIssuer"
+        >
+          <option value="">Network</option>
+          <option [value]="network.value" *ngFor="let network of networks">
+            {{ network.name }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            order?.get('accountIssuer')?.touched &&
+            order?.get('accountIssuer')?.invalid
+          "
+          >Please choose a valid network*</span
+        >
+        <p>Enter momo number</p>
+        <input
+          type="text"
+          placeholder="Phone number"
+          maxlength="10"
+          pattern="\d+"
+          maxlength="10"
+          class="form-control form-control-lg"
+          formControlName="accountNumber"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            order?.get('accountNumber')?.touched &&
+            order?.get('accountNumber')?.invalid
+          "
+          >Please enter a valid momo number*</span
+        >
+        <br />
+      </ng-container>
+      <ng-container formGroupName="recipient">
+        <h5>Enter your information to receive card details</h5>
+        <p>What is your name?</p>
+        <input
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+          class="form-control form-control-lg"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            recipient?.get('name')?.touched && recipient?.get('name')?.invalid
+          "
+          >Please provide a valid name*</span
+        >
+        <br />
+        <p>Provide your phone number</p>
+        <input
+          placeholder="phone number"
+          pattern="\d+"
+          maxlength="10"
+          type="text"
+          formControlName="phone"
+          class="form-control form-control-lg"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            recipient?.get('phone')?.touched && recipient?.get('phone')?.invalid
+          "
+          >Please provide a valid phone number to receive your code*</span
+        >
+      </ng-container>
+      <div class="d-flex align-items-center flex-row-reverse p-4">
+        <span
+          >Total:
+          <span style="font-size: 20px">{{
+            price$ | async | currency : "GHS"
+          }}</span></span
+        >
+      </div>
+      <br />
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <button
+          (click)="buy()"
+          [disabled]="disabled"
+          class="button-41 d-flex align-items-center justify-content-center p-2"
+          role="button"
+          [ngSwitch]="loading"
+        >
+          <div *ngSwitchCase="false">Buy</div>
+          <div *ngSwitchCase="true" class="loader"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div
+  class="box d-flex align-items-center justify-content-center flex-column p-1"
+>
+  <div class="card w-100" [formGroup]="form">
+    <div class="d-flex align-items-center justify-content-center w-100 p-4 imgg">
+      <img
+        src="https://bossugifts.com/assets/images/cards.png"
+        class="card-img-top"
+        style="width: 100px"
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Where gifting becomes effortless!</h5>
+      <br />
+      <ng-container>
+        <p class="form-label">Choose Category</p>
+        <div class="selector">
+          <div id="selectField">
+            <p id="selectText">Choose your options</p>
+            <img [src]="myimage" id="arrowIcon">
+          </div>
+          <ul id="list" class="hide">
+            <li class="options" [value]="cat._id" *ngFor="let cat of category$ | async">
+              <img [src]="myCardLogo">
+              <p>{{ cat.name }}</p>
+            </li>
+          </ul>
+        </div>
+        <span
+          class="text-danger"
+          *ngIf="
+            items?.get('categoryId')?.touched &&
+            items?.get('categoryId')?.invalid
+          "
+          >Please choose gift card category*</span
+        >
+        <p>Choose Type</p>
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label="Large select example"
+          formControlName="giftcardId"
+        >
+          <option value="">Card</option>
+          <option [value]="card._id" *ngFor="let card of cards$ | async">
+            {{ card.description }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            items?.get('giftcardId')?.touched &&
+            items?.get('giftcardId')?.invalid
+          "
+          >Please choose your prefered card type*</span
+        >
+        <p>How many do you want to buy?</p>
+        <select
+          class="form-select form-select-lg mb-3"
+          formControlName="quantity"
+        >
+          <option value="">Quantity</option>
+          <option [value]="q" *ngFor="let q of quantity">
+            {{ q }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            items?.get('quantity')?.touched && items?.get('quantity')?.invalid
+          "
+          >Please enter quantity you want to buy*</span
+        >
+      </ng-container>
+      <ng-container formGroupName="order">
+        <p>Choose your momo network</p>
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label="Large select example"
+          formControlName="accountIssuer"
+        >
+          <option value="">Network</option>
+          <option [value]="network.value" *ngFor="let network of networks">
+            {{ network.name }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            order?.get('accountIssuer')?.touched &&
+            order?.get('accountIssuer')?.invalid
+          "
+          >Please choose a valid network*</span
+        >
+        <p>Enter momo number</p>
+        <input
+          type="text"
+          placeholder="Phone number"
+          maxlength="10"
+          pattern="\d+"
+          maxlength="10"
+          class="form-control form-control-lg"
+          formControlName="accountNumber"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            order?.get('accountNumber')?.touched &&
+            order?.get('accountNumber')?.invalid
+          "
+          >Please enter a valid momo number*</span
+        >
+        <br />
+      </ng-container>
+      <ng-container formGroupName="recipient">
+        <h5>Enter your information to receive card details</h5>
+        <p>What is your name?</p>
+        <input
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+          class="form-control form-control-lg"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            recipient?.get('name')?.touched && recipient?.get('name')?.invalid
+          "
+          >Please provide a valid name*</span
+        >
+        <br />
+        <p>Provide your phone number</p>
+        <input
+          placeholder="phone number"
+          pattern="\d+"
+          maxlength="10"
+          type="text"
+          formControlName="phone"
+          class="form-control form-control-lg"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            recipient?.get('phone')?.touched && recipient?.get('phone')?.invalid
+          "
+          >Please provide a valid phone number to receive your code*</span
+        >
+      </ng-container>
+      <div class="d-flex align-items-center flex-row-reverse p-4">
+        <span
+          >Total:
+          <span style="font-size: 20px">{{
+            price$ | async | currency : "GHS"
+          }}</span></span
+        >
+      </div>
+      <br />
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <button
+          (click)="buy()"
+          [disabled]="disabled"
+          class="button-41 d-flex align-items-center justify-content-center p-2"
+          role="button"
+          [ngSwitch]="loading"
+        >
+          <div *ngSwitchCase="false">Buy</div>
+          <div *ngSwitchCase="true" class="loader"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+my css for the above angular html component
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+.box {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  background: rgba(255,255,255,0.7);
+  border-radius: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .box {
+    width: 100%;
+  }
+}
+
+.imgg{
+  background: rgba(255,255,255,0.7);
+}
+
+.card-body{
+  background: rgba(0, 0, 0, 0.1);
+
+}
+/*rgba(255,255,255,0.7)
+rgba(255, 255, 355, .7)*/
+h5 {
+  color: #838383;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+p,
+h5,
+span {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+}
+
+input,
+select {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, .7);
+  width: 90%;
+  display: block;
+  border-bottom: 0.2rem solid #00d775;
+  transition: all 0.3s;
+}
+
+select:hover, select:focus{
+  background: rgba(255, 255, 355, .7);
+}
+
+.options{
+  background: rgba(255,255,255,0.7);
+  border-radius: 6px;
+  color: #333;
+}
+
+
+
+.options:hover, .options:focus{
+  background: rgba(255,255,355,0.7);
+}
+
+/* CSS */
+.button-41 {
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #00d775, #00bd68);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  height: 65px;
+  line-height: 44px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 95%;
+  z-index: 9;
+  border: 0;
+}
+
+.button-41:hover {
+  background: #00bd68;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  color: #fff;
+  background: radial-gradient(circle at 60% 65%, currentColor 62%, #0000 65%)
+      top left,
+    radial-gradient(circle at 40% 65%, currentColor 62%, #0000 65%) top right,
+    linear-gradient(to bottom left, currentColor 42%, #0000 43%) bottom left,
+    linear-gradient(to bottom right, currentColor 42%, #0000 43%) bottom right;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.4;
+  animation: l3 1s infinite;
+}
+@keyframes l3 {
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.alert {
+  position: absolute;
+  position: absolute;
+  top: 5rem;
+  z-index: 10000000000000;
+}
+
+
+/*-------------------*/
+.selector{
+  width: 90%;
+  margin: 0 auto;
+  width: 90%;
+  display: block;
+
+}
+
+#selectField{
+  width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.7);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#selectField img{
+  width: 12px;
+  transition: transform .5s;
+}
+
+#list{
+  width: 100%;
+  background: rgba(255, 255, 355, .7);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.options{
+  width: 100%;
+  padding: 15px 0 15px 70px;
+  list-style: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.options img{
+  width: 25px;
+  position: absolute;
+  top: 12px;
+  left: 25px;
+}
+
+.options:hover{
+  background: rgba(255, 255, 355, .7);    
+}
+
+.hide{
+  visibility: hidden;
+}
+
+.rotate{
+  transform: rotate(180deg);
+}
+
+
+my vanilla js
+var selectField = document.getElementById("selectField");
+        var selectText = document.getElementById("selectText");
+        var options = document.getElementsByClassName("options");
+        var list = document.getElementById("list");
+        var arrowIcon = document.getElementById("arrowIcon");
+    
+        selectField.onclick = function()    {
+            list.classList.toggle("hide");
+            arrowIcon.classList.toggle("rotate");
+        }
+    
+        for (var i = 0; i < options.length; i++) {
+            options[i].onclick = function () {
+                selectText.innerHTML = this.textContent;
+                list.classList.toggle("hide");
+                arrowIcon.classList.toggle("rotate");
+            }
+        }
+
+        how do i insert my vanilla js to make selectordiv  work or if you conert my js to typescript so i can use it to make my selector div work

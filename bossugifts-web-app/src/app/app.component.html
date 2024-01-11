@@ -1,0 +1,171 @@
+<div
+  class="box d-flex align-items-center justify-content-center flex-column p-1"
+>
+  <div class="card w-100" [formGroup]="form">
+    <div class="d-flex align-items-center justify-content-center w-100 p-4 imgg">
+      <img
+        src="https://bossugifts.com/assets/images/cards.png"
+        class="card-img-top"
+        style="width: 100px"
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Where gifting becomes effortless!</h5>
+      <br />
+      <ng-container>
+        <p class="form-label">Choose Category</p>
+        <div class="selector" formControlName="categoryId">
+          <div id="selectField">
+            <p id="selectText">Choose your options</p>
+            <img [src]="myimage" id="arrowIcon">
+          </div>
+          <ul id="list" class="hide">
+            <li class="options" [value]="cat._id" *ngFor="let cat of category$ | async">
+              <img [src]="myCardLogo">
+              <p>{{ cat.name }}</p>
+            </li>
+          </ul>
+        </div>
+        <span
+          class="text-danger"
+          *ngIf="
+            items?.get('categoryId')?.touched &&
+            items?.get('categoryId')?.invalid
+          "
+          >Please choose gift card category*</span
+        >
+        <p>Choose Type</p>
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label="Large select example"
+          formControlName="giftcardId"
+        >
+          <option value="">Card</option>
+          <option [value]="card._id" *ngFor="let card of cards$ | async">
+            {{ card.description }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            items?.get('giftcardId')?.touched &&
+            items?.get('giftcardId')?.invalid
+          "
+          >Please choose your prefered card type*</span
+        >
+        <p>How many do you want to buy?</p>
+        <select
+          class="form-select form-select-lg mb-3"
+          formControlName="quantity"
+        >
+          <option value="">Quantity</option>
+          <option [value]="q" *ngFor="let q of quantity">
+            {{ q }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            items?.get('quantity')?.touched && items?.get('quantity')?.invalid
+          "
+          >Please enter quantity you want to buy*</span
+        >
+      </ng-container>
+      <ng-container formGroupName="order">
+        <p>Choose your momo network</p>
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label="Large select example"
+          formControlName="accountIssuer"
+        >
+          <option value="">Network</option>
+          <option [value]="network.value" *ngFor="let network of networks">
+            {{ network.name }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            order?.get('accountIssuer')?.touched &&
+            order?.get('accountIssuer')?.invalid
+          "
+          >Please choose a valid network*</span
+        >
+        <p>Enter momo number</p>
+        <input
+          type="text"
+          placeholder="Phone number"
+          maxlength="10"
+          pattern="\d+"
+          maxlength="10"
+          class="form-control form-control-lg"
+          formControlName="accountNumber"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            order?.get('accountNumber')?.touched &&
+            order?.get('accountNumber')?.invalid
+          "
+          >Please enter a valid momo number*</span
+        >
+        <br />
+      </ng-container>
+      <ng-container formGroupName="recipient">
+        <h5>Enter your information to receive card details</h5>
+        <p>What is your name?</p>
+        <input
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+          class="form-control form-control-lg"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            recipient?.get('name')?.touched && recipient?.get('name')?.invalid
+          "
+          >Please provide a valid name*</span
+        >
+        <br />
+        <p>Provide your phone number</p>
+        <input
+          placeholder="phone number"
+          pattern="\d+"
+          maxlength="10"
+          type="text"
+          formControlName="phone"
+          class="form-control form-control-lg"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            recipient?.get('phone')?.touched && recipient?.get('phone')?.invalid
+          "
+          >Please provide a valid phone number to receive your code*</span
+        >
+      </ng-container>
+      <div class="d-flex align-items-center flex-row-reverse p-4">
+        <span
+          >Total:
+          <span style="font-size: 20px">{{
+            price$ | async | currency : "GHS"
+          }}</span></span
+        >
+      </div>
+      <br />
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <button
+          (click)="buy()"
+          [disabled]="disabled"
+          class="button-41 d-flex align-items-center justify-content-center p-2"
+          role="button"
+          [ngSwitch]="loading"
+        >
+          <div *ngSwitchCase="false">Buy</div>
+          <div *ngSwitchCase="true" class="loader"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

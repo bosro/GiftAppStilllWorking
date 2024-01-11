@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+.box {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+@media only screen and (max-width: 600px) {
+  .box {
+    width: 100%;
+  }
+}
+
+h5 {
+  color: #838383;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+p,
+h5,
+span {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+}
+
+input,
+select {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: sold thin #0d6efd;
+  width: 90%;
+  display: block;
+  border-bottom: 0.3rem solid #00d775;
+  transition: all 0.3s;
+}
+
+/* CSS */
+.button-41 {
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #00d775, #00bd68);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  height: 65px;
+  line-height: 44px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 95%;
+  z-index: 9;
+  border: 0;
+}
+
+.button-41:hover {
+  background: #00bd68;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  color: #fff;
+  background: radial-gradient(circle at 60% 65%, currentColor 62%, #0000 65%)
+      top left,
+    radial-gradient(circle at 40% 65%, currentColor 62%, #0000 65%) top right,
+    linear-gradient(to bottom left, currentColor 42%, #0000 43%) bottom left,
+    linear-gradient(to bottom right, currentColor 42%, #0000 43%) bottom right;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.4;
+  animation: l3 1s infinite;
+}
+@keyframes l3 {
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.alert {
+  position: absolute;
+  position: absolute;
+  top: 5rem;
+  z-index: 10000000000000;
+}
+
+
+/*---------------*/
+<style> 
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.hero{
+width: 100%;
+height: 100vh;
+background-image: linear-gradient(to bottom,  rgba(0, 0, 0, 0.842), rgba(0,0,0,0.7)), url(/assets/images/luigi.jpg);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.selector{
+width: 350px;
+}
+
+#selectField{
+width: 100%;
+padding: 15px 20px;
+margin-bottom: 30px;
+box-sizing: border-box;
+background: rgba(255,255,255,0.7);
+border-radius: 6px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+#selectField img{
+width: 12px;
+transition: transform .5s;
+}
+
+#list{
+width: 100%;
+background: rgba(255, 255, 355, .7);
+border-radius: 6px;
+overflow: hidden;
+}
+
+.options{
+width: 100%;
+padding: 15px 0 15px 70px;
+list-style: none;
+cursor: pointer;
+box-sizing: border-box;
+position: relative;
+}
+
+.options img{
+width: 25px;
+position: absolute;
+top: 12px;
+left: 25px;
+}
+
+.options:hover{
+background: rgba(255, 255, 355, .7);    
+}
+
+.hide{
+visibility: hidden;
+}
+
+.rotate{
+transform: rotate(180deg);
+}
+</style>

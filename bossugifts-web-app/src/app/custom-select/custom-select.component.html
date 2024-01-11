@@ -1,0 +1,13 @@
+<div class="selector">
+    <div id="selectField">
+      <p id="selectText">Choose your options</p>
+      <img [src]="myimage" id="arrowIcon">
+    </div>
+    <ul id="list" class="hide">
+      <li class="options" [value]="cat._id" *ngFor="let cat of category$ | async">
+        <img [src]="myCardLogo" />
+        <p>{{ cat.name }}</p>
+      </li>
+    </ul>
+  </div>
+  
